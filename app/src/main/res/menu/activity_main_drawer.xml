@@ -19,6 +19,6 @@
 
         <item
             android:id="@+id/dataFragment"
-            android:title="Data read fragment" />
+            android:title="Data fragment" />
     </group>
 </menu>

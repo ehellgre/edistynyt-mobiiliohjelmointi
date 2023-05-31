@@ -26,19 +26,5 @@
         android:id="@+id/dataFragment"
         android:name="com.example.edistynytmobiiliohjelmointi2023lapinamk.DataFragment"
         android:label="fragment_data"
-        tools:layout="@layout/fragment_data" >
-        <action
-            android:id="@+id/action_dataFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.example.edistynytmobiiliohjelmointi2023lapinamk.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
-        <argument
-            android:name="id"
-            app:argType="integer"
-            android:defaultValue="-1" />
-    </fragment>
+        tools:layout="@layout/fragment_data" />
 </navigation>

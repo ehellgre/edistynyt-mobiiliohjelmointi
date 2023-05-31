@@ -9,8 +9,8 @@
 
 
     <Button
-        android:id="@+id/button_navigate_detail"
+        android:id="@+id/button_get_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CHANGE FRAGMENT" />
+        android:text="GET DATA!!" />
 </LinearLayout>
