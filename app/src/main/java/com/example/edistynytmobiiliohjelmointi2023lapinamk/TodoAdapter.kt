@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edistynytmobiiliohjelmointi2023lapinamk.databinding.RecyclerviewItemBinding
 
@@ -84,6 +86,8 @@ class TodoAdapter(private val todos: List<ToDo>) : RecyclerView.Adapter<TodoAdap
         // jos itemiä klikataan käyttöliittymässä, ajetaan tämä koodio
         override fun onClick(v: View) {
 
+            val action = DataFragmentDirections.actionDataFragmentToDataDetailFragment(itemlist?.id as Int)
+            v.findNavController().navigate(action)
         }
     }
 
