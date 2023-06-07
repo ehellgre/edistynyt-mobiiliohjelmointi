@@ -1,5 +1,6 @@
 package com.example.edistynytmobiiliohjelmointi2023lapinamk
 
+import android.graphics.Color
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -14,9 +15,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 
 class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
@@ -44,6 +47,23 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         val rovaniemi = LatLng(66.50247438013193, 25.7300978471244)
         var m2 = googleMap.addMarker(MarkerOptions().position(rovaniemi).title("Rovaniemi"))
         m2?.tag = "Rovaniemi"
+
+        // H2 lisätehtävä, piirretään viiva Rovaniemistä -> Sydneyyn ja ympyröidään Rollo
+        // viiva rovaniemestä -> sydney
+        val drawLine = PolylineOptions().apply {
+            color(Color.RED)
+            width(12f)
+            add(rovaniemi, sydney)
+        }
+        googleMap.addPolyline(drawLine)
+
+        // ympyröidään Rovaniemi
+        val rvnCircle = CircleOptions().apply {
+            center(rovaniemi)
+            radius(2000.0)
+        }
+        googleMap.addCircle(rvnCircle)
+
 
         // siirtää mapsin kameran tähän koordinaattiin, lisätty +Zoom -> pitää olla float
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rovaniemi, 15f))
