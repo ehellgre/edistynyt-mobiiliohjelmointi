@@ -1,4 +1,4 @@
-package com.example.edistynytmobiiliohjelmointi2023lapinamk
+package com.example.edistynytmobiiliohjelmointi2023lapinamk.datatypes.todo
 
 import com.google.gson.annotations.SerializedName
 

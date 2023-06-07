@@ -14,9 +14,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapsFragment : Fragment() {
+class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
     private var _binding: FragmentMapsBinding? = null
     // This property is only valid between onCreateView and
@@ -35,14 +36,18 @@ class MapsFragment : Fragment() {
 
         // käynnistyy kun kartta avataan
         val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        var m1 = googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        m1?.tag = "Sydney"
 
         // rovaniemi
         val rovaniemi = LatLng(66.50247438013193, 25.7300978471244)
-        googleMap.addMarker(MarkerOptions().position(rovaniemi).title("Rovaniemi"))
+        var m2 = googleMap.addMarker(MarkerOptions().position(rovaniemi).title("Rovaniemi"))
+        m2?.tag = "Rovaniemi"
 
         // siirtää mapsin kameran tähän koordinaattiin, lisätty +Zoom -> pitää olla float
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rovaniemi, 15f))
+
+        googleMap.setOnMarkerClickListener(this)
     }
 
     override fun onCreateView(
@@ -63,6 +68,25 @@ class MapsFragment : Fragment() {
             gMap.uiSettings.isZoomControlsEnabled = isChecked
         }
 
+        binding.radioButtonMapNormal.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(buttonView.isChecked) {
+                gMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+            }
+        }
+
+        binding.radioButtonMapHybrid.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(buttonView.isChecked) {
+                gMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+            }
+        }
+
+        binding.radioButtonMapTerrain.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(buttonView.isChecked) {
+                gMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+            }
+        }
+
+
         return root
 
     }
@@ -71,5 +95,12 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    // funktio vastaa siitä kun jotakin markeria klikataan kartalla
+    override fun onMarkerClick(p0: Marker): Boolean {
+        Log.d("TESTI", "Marker CLICK")
+        Log.d("TESTI", p0.tag.toString())
+        return false
     }
 }

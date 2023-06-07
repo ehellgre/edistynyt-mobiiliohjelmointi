@@ -6,13 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.edistynytmobiiliohjelmointi2023lapinamk.databinding.FragmentDataBinding
+import com.example.edistynytmobiiliohjelmointi2023lapinamk.datatypes.todo.ToDo
 import com.google.gson.Gson
 
 
