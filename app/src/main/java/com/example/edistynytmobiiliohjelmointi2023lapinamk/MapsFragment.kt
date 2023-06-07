@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.edistynytmobiiliohjelmointi2023lapinamk.databinding.FragmentMapsBinding
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -101,6 +102,13 @@ class MapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     override fun onMarkerClick(p0: Marker): Boolean {
         Log.d("TESTI", "Marker CLICK")
         Log.d("TESTI", p0.tag.toString())
+
+        val lat = p0.position.latitude.toFloat()
+        val lon = p0.position.longitude.toFloat()
+
+        val action = MapsFragmentDirections.actionMapsFragmentToCityWeatherFragment(lat, lon)
+        findNavController().navigate(action)
+
         return false
     }
 }
